@@ -21,7 +21,8 @@ class RecommendabeerItem(scrapy.Item):
     ranking = scrapy.Field()
     beer_img = scrapy.Field()
     desc = scrapy.Field()
-    
+    family_style = scrapy.Field()
+    style_desc = scrapy.Field()
   
 
     # Review Stats
