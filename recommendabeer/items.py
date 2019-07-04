@@ -8,11 +8,12 @@
 import scrapy
 
 
-class RecommendabeerItem(scrapy.Item):
+class BeerItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     
     # Beer Stats
+    beer_id = scrapy.Field()
     beer_name = scrapy.Field()
     brewery = scrapy.Field()
     BAscore = scrapy.Field()
@@ -21,8 +22,8 @@ class RecommendabeerItem(scrapy.Item):
     ranking = scrapy.Field()
     beer_img = scrapy.Field()
     desc = scrapy.Field()
-    family_style = scrapy.Field()
-    style_desc = scrapy.Field()
+    beer_style = scrapy.Field()
+    #style_desc = scrapy.Field()
   
 
     # Review Stats
@@ -33,3 +34,13 @@ class RecommendabeerItem(scrapy.Item):
     #review = scrapy.Field()
     #style = scrapy.Field()
 
+
+class ReviewItem(scrapy.Item):
+    
+    review_id = scrapy.Field()
+    beer_id = scrapy.Field()
+    username = scrapy.Field()
+    posted = scrapy.Field()
+    text = scrapy.Field()
+    ratings = scrapy.Field()
+    score = scrapy.Field()
