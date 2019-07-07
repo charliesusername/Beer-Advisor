@@ -1,0 +1,14 @@
+# of styles: 111
+min # of beers: 55, Japanese Happoshu 
+max # of beers: 181,149, American IPA
+
+# of beers: 9956
+min # of reviews: 5, 
+	[{American Amber / Red Ale: Ultra High Frequency, American Amber / Red Ale: Kona Brown, Leipzig Gose: Margarita Gose}]
+max # of reviews: 3,995, 
+	[{American Imperial IPA: 90 Minute IPA}},American Imperial Stout: Breakfast Stout]
+
+# of reviews: 1,757,044
+# of users: 57,023 
+max reviews by one user: 4175
+	that user: StonedTrippin

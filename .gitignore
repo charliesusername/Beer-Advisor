@@ -1,1 +1,5 @@
 *.csv
+*.sqlite
+/processor/.ipynb_checkpoints/
+__pycache__/
+data
