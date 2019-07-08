@@ -1,0 +1,10 @@
+name: beer_advisor
+title:
+username:
+account: charliesusername
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1015497
+bundleId: 2209085
+url: https://charliesusername.shinyapps.io/beer_advisor/
+when: 1562550729.70888
