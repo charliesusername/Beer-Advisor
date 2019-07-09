@@ -32,6 +32,13 @@ def clean_dates(col):
     return post_cleaned
 
 
+### EDA Visualization ###
+def poly_fit_line(x, y):
+    z = np.polyfit(x, y, 3)
+    f = np.poly1d(z)
+    #f_text = ' + '.join(['{:0.3e}X^{}'.format(f[x],x) for x in range(len(f)+1)])
+    return pd.DataFrame({'x_fit': np.linspace(x[0], x[-1], 50),'y_fit', f(x_fit)})#, f_text
+
 ### NLP functions ###
 import re,  math, csv
 import nltk, gensim, spacy
