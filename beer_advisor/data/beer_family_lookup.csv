@@ -1,0 +1,112 @@
+idx,family,style
+0,Bocks,German Bock
+1,Bocks,German Doppelbock
+2,Bocks,German Eisbock
+3,Bocks,German Maibock
+4,Bocks,German Weizenbock
+5,Brown Ales,American Brown Ale
+6,Brown Ales,English Brown Ale
+7,Brown Ales,English Dark Mild Ale
+8,Brown Ales,German Altbier
+9,Dark Ales,American Black Ale
+10,Dark Ales,Belgian Dark Ale
+11,Dark Ales,Belgian Dubbel
+12,Dark Ales,German Roggenbier
+13,Dark Ales,Scottish Ale
+14,Dark Ales,Winter Warmer
+15,Dark Lagers,American Amber / Red Lager
+16,Dark Lagers,European Dark Lager
+17,Dark Lagers,German Märzen / Oktoberfest
+18,Dark Lagers,German Rauchbier
+19,Dark Lagers,German Schwarzbier
+20,Dark Lagers,Munich Dunkel Lager
+21,Dark Lagers,Vienna Lager
+22,Hybrid Beers,American Cream Ale
+23,Hybrid Beers,Bière de Champagne / Bière Brut
+24,Hybrid Beers,Braggot
+25,Hybrid Beers,California Common / Steam Beer
+26,India Pale Ales,American Brut IPA
+27,India Pale Ales,American Imperial IPA
+28,India Pale Ales,American IPA
+29,India Pale Ales,Belgian IPA
+30,India Pale Ales,English India Pale Ale (IPA)
+31,India Pale Ales,New England IPA
+32,Pale Ales,American Amber / Red Ale
+33,Pale Ales,American Blonde Ale
+34,Pale Ales,American Pale Ale (APA)
+35,Pale Ales,Belgian Blonde Ale 
+36,Pale Ales,Belgian Pale Ale
+37,Pale Ales,Belgian Saison
+38,Pale Ales,English Bitter
+39,Pale Ales,English Extra Special / Strong Bitter (ESB)
+40,Pale Ales,English Pale Ale
+41,Pale Ales,English Pale Mild Ale
+42,Pale Ales,French Bière de Garde
+43,Pale Ales,German Kölsch
+44,Pale Ales,Irish Red Ale
+45,Pilseners and Pale Lagers,American Adjunct Lager
+46,Pilseners and Pale Lagers,American Imperial Pilsner
+47,Pilseners and Pale Lagers,American Lager
+48,Pilseners and Pale Lagers,American Light Lager
+49,Pilseners and Pale Lagers,American Malt Liquor
+50,Pilseners and Pale Lagers,Bohemian Pilsener
+51,Pilseners and Pale Lagers,European Export / Dortmunder
+52,Pilseners and Pale Lagers,European Pale Lager
+53,Pilseners and Pale Lagers,European Strong Lager
+54,Pilseners and Pale Lagers,German Helles
+55,Pilseners and Pale Lagers,German Kellerbier / Zwickelbier
+56,Pilseners and Pale Lagers,German Pilsner
+57,Porters,American Imperial Porter
+58,Porters,American Porter
+59,Porters,Baltic Porter
+60,Porters,English Porter
+61,Porters,Robust Porter 
+62,Porters,Smoke Porter
+63,Specialty Beers,Chile Beer
+64,Specialty Beers,Finnish Sahti
+65,Specialty Beers,Fruit and Field Beer
+66,Specialty Beers,Herb and Spice Beer
+67,Specialty Beers,Japanese Happoshu
+68,Specialty Beers,Japanese Rice Lager
+69,Specialty Beers,Low Alcohol Beer
+70,Specialty Beers,Pumpkin Beer
+71,Specialty Beers,Russian Kvass
+72,Specialty Beers,Rye Beer
+73,Specialty Beers,Scottish Gruit / Ancient Herbed Ale
+74,Specialty Beers,Smoke Beer
+75,Stouts,American Imperial Stout
+76,Stouts,American Stout
+77,Stouts,English Oatmeal Stout
+78,Stouts,English Stout
+79,Stouts,English Sweet / Milk Stout
+80,Stouts,Foreign / Export Stout
+81,Stouts,Irish Dry Stout
+82,Stouts,Russian Imperial Stout
+83,Strong Ales,American Barleywine
+84,Strong Ales,American Imperial Red Ale
+85,Strong Ales,American Strong Ale
+86,Strong Ales,American Wheatwine Ale
+87,Strong Ales,Belgian Quadrupel (Quad)
+88,Strong Ales,Belgian Strong Dark Ale
+89,Strong Ales,Belgian Strong Pale Ale
+90,Strong Ales,Belgian Tripel
+91,Strong Ales,British Barleywine
+92,Strong Ales,English Old Ale
+93,Strong Ales,English Strong Ale
+94,Strong Ales,Scotch Ale / Wee Heavy
+95,Wheat Beers,American Dark Wheat Ale
+96,Wheat Beers,American Pale Wheat Ale
+97,Wheat Beers,Belgian Witbier
+98,Wheat Beers,Berliner Weisse
+99,Wheat Beers,German Dunkelweizen
+100,Wheat Beers,German Hefeweizen
+101,Wheat Beers,German Kristalweizen
+102,Wild/Sour Beers,American Brett
+103,Wild/Sour Beers,American Wild Ale
+104,Wild/Sour Beers,Belgian Faro
+105,Wild/Sour Beers,Belgian Fruit Lambic
+106,Wild/Sour Beers,Belgian Gueuze
+107,Wild/Sour Beers,Belgian Lambic
+108,Wild/Sour Beers,Flanders Oud Bruin
+109,Wild/Sour Beers,Flanders Red Ale
+110,Wild/Sour Beers,Leipzig Gose
