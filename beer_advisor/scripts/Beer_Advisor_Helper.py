@@ -93,23 +93,61 @@ show_correlation_btn = widgets.Button(
     icon=''
 )
 
-show_beeradvisor_btn = widgets.Button(
+show_beeradvisor1_btn = widgets.Button(
     description='',
     disabled=False,
     button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
-    tooltip='Show beeradvisor section',
+    tooltip='Show beeradvisor section 1',
+    icon=''
+)
+
+show_beeradvisor2_btn = widgets.Button(
+    description='Your Preferences?',
+    disabled=False,
+    button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Show beeradvisor section 2',
+    icon=''
+)
+
+show_beeradvisor3_btn = widgets.Button(
+    description='Group Em Up',
+    disabled=False,
+    button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Show beeradvisor section 3',
+    icon=''
+)
+
+show_beeradvisor4_btn = widgets.Button(
+    description='Calculate Correlation',
+    disabled=False,
+    button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Show beeradvisor section 4',
+    icon=''
+)
+
+show_beeradvisor5_btn = widgets.Button(
+    description='Try these Beers!',
+    disabled=False,
+    button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Show beeradvisor section 5',
     icon=''
 )
 
 show_beerrecs_btn = widgets.Button(
-    description='',
+    description='Closer Look',
     disabled=False,
     button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
     tooltip='Show beer recommendations',
     icon=''
 )
 
-
+show_shameless_plug_btn = widgets.Button(
+    description='Author Desc.',
+    disabled=False,
+    button_style='primary', # 'success', 'info', 'warning', 'danger' or ''
+    tooltip='Show beer recommendations',
+    icon=''
+)
 
 
 def show_overview_text(b):
@@ -130,7 +168,7 @@ def show_EDA1_text(b):
     
 def goplot_super_user(b):
     show_superuserplot_btn.close()
-    plot_super_user()
+    plot_super_user2()
     display(Markdown(show_boxplot_intro_text))
     display(show_correlation_btn)    
 
@@ -145,18 +183,44 @@ def goplot_boxhist(b):
     
 def goplot_correlation(b):
     show_correlation_btn.close()
-    plot_correlation()
+    plot_correlation2()
     display(Markdown(EDA3_text))
-    display(show_beeradvisor_btn)
+    display(show_beeradvisor1_btn)
     
-def show_beeradvisor_text(b):
-    show_beeradvisor_btn.close()
-    display(Markdown(beeradvisor_text))
+def show_beeradvisor1_text(b):
+    show_beeradvisor1_btn.close()
+    display(Markdown(beeradvisor1_text))
+    display(show_beeradvisor2_btn)
+
+def show_beeradvisor2_text(b):
+    show_beeradvisor2_btn.close()
+    display(Markdown(beeradvisor2_text))
+    display(show_beeradvisor3_btn)
+    
+def show_beeradvisor3_text(b):
+    show_beeradvisor3_btn.close()
+    display(Markdown(beeradvisor3_text))
+    display(show_beeradvisor4_btn)
+
+def show_beeradvisor4_text(b):
+    show_beeradvisor4_btn.close()
+    display(Markdown(beeradvisor4_text))
+    display(show_beeradvisor5_btn)
+
+def show_beeradvisor5_text(b):
+    show_beeradvisor5_btn.close()
+    display(Markdown(beeradvisor5_text))
     display(show_beerrecs_btn)
 
 def show_beerrecs(b):
     show_beerrecs_btn.close()
-    [display_beer(recs_df.iloc[i,:].to_frame().values.tolist()) for i in range(4)]     
+    [display_beer(recs_df.iloc[i,:].to_frame().values.tolist())
+     for i in range(4)]
+    display(show_shameless_plug_btn)
+    
+def show_shameless_plug(b):
+    show_shameless_plug_btn.close()
+    display(Markdown(shameless_plug_text))
   
 
 
@@ -228,9 +292,78 @@ def plot_super_user():
     #pio.write_image(fig, 'img/super_user_lifetime.png', width=600, height= 600,scale = 1)
     return plotly.offline.iplot(fig)
 
+def plot_super_user2():
+    def find_user_aggregate(u):
+        df = reviews[reviews.username == u].posted.value_counts()
+        df = df.reset_index().rename(columns = {'index':'date'})
+        df = (
+                df.
+                groupby(by=[pd.to_datetime(df.date.rename(columns={'date':'year'})).dt.year,
+                            pd.to_datetime(df.date.rename(columns={'date':'month'})).dt.month])
+                .agg('count')
+            )
+        df = df.reset_index().rename(columns = {'level_0':'year','level_1':'month'})[['year','month','posted']]
+        df['dates'] = [dt.datetime.strptime('-'.join([str(df['month'][i]),str(df['year'][i])]),'%m-%Y') for i in range(df.shape[0])]
+        return df[df.dates < '2019-06-01'][['dates','posted']]
+    
+    def find_all_aggregate(users):
+        df = reviews[~reviews.username.isin(users)].posted.value_counts()
+        df = df.reset_index().rename(columns = {'index':'date'})
+        df = (
+                df.
+                groupby(by=[pd.to_datetime(df.date.rename(columns={'date':'year'})).dt.year,
+                            pd.to_datetime(df.date.rename(columns={'date':'month'})).dt.month])
+                .agg('count')
+            )
+        df = df.reset_index().rename(columns = {'level_0':'year','level_1':'month'})[['year','month','posted']]
+        df['dates'] = [dt.datetime.strptime('-'.join([str(df['month'][i]),str(df['year'][i])]),'%m-%Y') for i in range(df.shape[0])]
+        return df[df.dates < '2019-06-01'][['dates','posted']]
+    
+
+    top10_users = list(reviews.groupby('username').agg('count').sort_values('posted',ascending=False).index[:10])
+    
+    data = [find_user_aggregate(user) for user in top10_users]
+    data.append(find_all_aggregate(top10_users))
+    traces=[]
+    for i in range(len(top10_users[:])+1):
+        df = data[i]
+        xU = df.dates
+        yU = df.posted.values
+        if i < 10: 
+            name = top10_users[i]
+        else:
+            name = 'Everyone Else'
+        trace = dict(
+            x=xU,
+            y=yU,
+            hoverinfo='x+y',
+            mode='lines',
+            line=dict(width=0.5),
+            stackgroup='one',
+            name = name
+        )
+        traces.append(trace)
+        
+    
+    
+        
+        
+
+    review_counts_by_time = traces
+
+
+    layout = dict(title = 'Montly Aggregate of Super-User Activity',
+                  yaxis = dict(
+                      title = 'Per Month Count'),
+                  xaxis = dict(
+                      title = 'Date'
+                  )
+                 )
+    fig = dict(data = review_counts_by_time, layout = layout)
+    #pio.write_image(fig, 'img/super_user_lifetime.png', width=600, height= 600,scale = 1)
+    return plotly.offline.iplot(fig)
 
 ### Show boxplots of the percentage of beers rated in each family by the top 10 reviewers
-
 def boxplot_family():
     top10 = reviews.groupby('username').agg('count').sort_values('posted',ascending=False).index[:10].values
     df = reviews[reviews.username.isin(top10)].join(beers[['family','BAscore']],on='beer_id',how='left')
@@ -311,12 +444,40 @@ def plot_correlation():
     x_fit = np.linspace(x[0], x[-1], 50)
     y_fit = f(x_fit)
 
-    trace1 = go.Scatter(x = x,y = y,mode='markers',name='',hovertext=df['beer_name'].values,
+    trace1 = go.Scatter(x = x,y = y,mode='markers',name=list(df['family'].values),hovertext=df['beer_name'].values,
                         marker=dict(size=5))
     trace2 = go.Scatter(x = x_fit, y = y_fit, mode = 'lines',name='2d Polyfit')
     layout = go.Layout(title='BA Score by Number of Reviews')
     data = [trace1,trace2]
     fig = go.Figure(data,layout)
+    return plotly.offline.iplot(fig)
+
+def plot_correlation2():
+    df = beers[['num_reviews','BAscore','beer_name','family']].sort_values('num_reviews')
+    families = list(beers['family'].unique())
+    x = df['num_reviews'].values
+    y = df['BAscore'].values
+    z = np.polyfit(x, y, 2)
+    f = np.poly1d(z)
+    x_fit = np.linspace(x[0], x[-1], 50)
+    y_fit = f(x_fit)
+    traces = []
+    for family in families:
+        df0 = (
+            beers[beers.family == family]
+            [['num_reviews','BAscore','beer_name','family']]
+        )
+        trace = go.Scatter(x = df0['num_reviews'].values,
+                           y = df0['BAscore'].values,
+                           mode='markers',name=family,
+                           hovertext=df['beer_name'].values,
+                           marker=dict(size=5))
+        traces.append(trace)
+    
+    trace_fit = go.Scatter(x = x_fit, y = y_fit, mode = 'lines',name='2d Polyfit')
+    traces.append(trace_fit)
+    layout = go.Layout(title='BA Score by Number of Reviews')
+    fig = go.Figure(data = traces, layout = layout)
     return plotly.offline.iplot(fig)
 
 ########## COLLABORATIVE FILTERING ##########
@@ -428,7 +589,7 @@ This project had three steps:
 1. This project aimed to scrape as much data as possible from [BeerAdvocate.com](https://www.beeradvocate.com)
 2. Peform Numerical Analysis on user reviews.
 3. Develop a recommender system to suggest beers to new users based on the data scraped from previous reviews.
-4. Analyze textual data from reviews to advisor brewers on new products.')) """
+"""
 
 webscraping_text = """
 ### 1. Webscraping
@@ -526,7 +687,7 @@ And the higher its score, the higher it's visibility.
 
 
 
-beeradvisor_text = """
+beeradvisor1_text = """
 ### 3. Beer Advisor Recommender
 
 With all of our data, we can actually approach the building of a Recommender System.
@@ -536,13 +697,22 @@ With all of our data, we can actually approach the building of a Recommender Sys
 We employ a __User-Item Collaborative Filter__:
 1. You input a series of Beers that you like _(or don't like)_ 
 
+"""
+beeradvisor2_text = """
+
+
 | Beers |   Lagunitas IPA |   Two Hearted Ale |   Sweet Action |   Hoegaarden Original White Ale |   Blue Moon Belgian White |   Club De Stella Artois |   Yuengling Traditional Lager |
 |:------|----------------:|------------------:|---------------:|--------------------------------:|--------------------------:|------------------------:|------------------------------:|
 | Scores |             3.2 |               4.1 |            2.7 |                             3.4 |                       3.1 |                     4.5 |                           4.2 |
 
 
-
 2. We find other users who have rated those same beers!!
+"""
+
+
+beeradvisor3_text = """
+
+
 
 | index| username     |   Lagunitas IPA |   Two Hearted Ale |   Sweet Action |   Hoegaarden Original White Ale |   Blue Moon Belgian White |   Club De Stella Artois |   Yuengling Traditional Lager |
 |:-----|:-------------|----------------:|------------------:|---------------:|--------------------------------:|--------------------------:|------------------------:|------------------------------:|
@@ -554,6 +724,10 @@ We employ a __User-Item Collaborative Filter__:
 | 6930 | FireorHigher |            nan  |            nan    |            nan |                            nan  |                    3.51    |                     nan |                           3.18 |
 
 3. Measure the correlation between the two
+"""
+beeradvisor4_text = """
+
+
 
 | user       |       corr |    Lagunitas IPA |   Two Hearted Ale |   Sweet Action |   Hoegaarden Original White Ale |   Blue Moon Belgian White |   Club De Stella Artois |   Yuengling Traditional Lager |
 |:-----------|-----------:|-------:|------:|-------:|-------:|-------:|-------:|-------:|
@@ -564,8 +738,14 @@ We employ a __User-Item Collaborative Filter__:
 | Tom_Banjo |  0.995 |   3    |   3.46 |   3    |   3.46 | nan    |    nan | nan    |
 | beergoot  |  0.876 |   3.66 |   4.45 | nan    | nan    | nan    |    nan |   3.33 |
 
+
 4. Mutliplies across the rows and then sums down the columns
 5. Outputs the 5 most highly scored beers weighted by my closest users (_in terms of preference_)
+"""
+beeradvisor5_text = """
+
+
+
 
 |    beer  | Turbo Nerd XIPA |       Vanilla Joe |       Innis & Gunn Lager Beer |        Filthy Dirty IPA |       Brunch Money |
 |:---------|-----------:|-----------:|-----------:|-----------:|-----------:|
@@ -573,5 +753,20 @@ We employ a __User-Item Collaborative Filter__:
 
 Let's take a look at the top two beers and see why we might like them so much...
 """
+
+shameless_plug_text = """
+
+I hope you enjoyed this presentation.
+
+* Check out my [github](https://github.com/charliesusername/Beer-Advisor) to view the code behind this project and my other projects. 
+
+* Or my [LinkedIn](https://www.linkedin.com/in/charles-cohen-999782119/) if your _hiring_!!
+
+
+    A Data Science Project by Charles Cohen
+
+"""
+
+
 clear_output()
 print('All Scripts Imported!!!')

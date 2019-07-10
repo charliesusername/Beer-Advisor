@@ -5,6 +5,7 @@ shinyUI(
         dashboardHeader(title='Beer Advisor'),
         dashboardSidebar(),
         dashboardBody(
+            useShinyjs(),
             fluidRow(box(width=3,
                          column(width=12,selectInput("SelectFamily","Pick a Family of Beer Styles",choices = families)),
                          column(width=12,selectInput("SelectStyle","Pick a Beer Style",choices = "")),

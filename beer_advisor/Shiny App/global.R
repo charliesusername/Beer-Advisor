@@ -2,7 +2,8 @@ library(dplyr)
 library(shiny)
 library(shinydashboard)
 library(reticulate)
-source_python("scripts/top5beers.py")
+library(shinyjs)
+source_python("./scripts/Shiny_Beer_Recommender.py")
 
 ## Load data into memory
 beer_info <- data.table::fread(input="../data/beer_info.csv")

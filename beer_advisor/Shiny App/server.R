@@ -2,6 +2,8 @@ library(shiny)
 library(DT)
 
 shinyServer(function(session,input, output) {
+  addClass(selector = "body", class = "sidebar-collapse")
+  
   vars = reactiveValues()
   
   vars$Beer <- "Yakima Fresh Hop"
@@ -79,11 +81,11 @@ shinyServer(function(session,input, output) {
   })
   
   observeEvent(input$GenRecs, {
-    ids = list(as.numeric(unlist(vars$user_list %>% select(id) %>% list)))
+    ids = as.numeric(unlist(vars$user_list %>% select(id) %>% list))
     scores = as.numeric(unlist(vars$user_list %>% select(scores) %>% list))
-    print(ids)
-    print(scores)
-    recs = generate_recommendations(c(1,2,3,4,5,56,7,54,1605),c(2,1,3,1,2,3,4,2,2.1),beer_info,beer_ratings)
+    print(typeof(ids))
+    print(typeof(scores))
+    recs = generate_recommendations(ids,scores,beer_info,beer_ratings)
     print(recs)
     output$BeerRecs <- DT::renderDataTable(
       recs %>% rename(Beer = beer_name, Score = BAscore,Brewery=brewery,Style=beer_style)
